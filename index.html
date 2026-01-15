@@ -1,3 +1,4 @@
+Khai, [15/1/2026 8:59 PM]
 <!DOCTYPE html>
 <html>
 <head>
@@ -150,7 +151,7 @@ function getGred(markah) {
 }
 
 function kiraPNG() {
-  let nama = document.getElementById("nama").value;
+  let nama = nama.value;
 
   let subs = [
     ["Bahasa Melayu", bm.value, 7],
@@ -182,7 +183,8 @@ function kiraPNG() {
     totalNilai += g.p * s[2];
     totalKredit += s[2];
 
-    html += `<tr>
+Khai, [15/1/2026 8:59 PM]
+html += `<tr>
       <td>${s[0]}</td>
       <td>${s[1]}</td>
       <td>${g.g}</td>
@@ -190,7 +192,6 @@ function kiraPNG() {
     </tr>`;
   }
 
-  /* PNG WITH 3 DECIMAL PLACES */
   let png = (totalNilai / totalKredit).toFixed(3);
 
   html += `</table>
@@ -202,4 +203,3 @@ function kiraPNG() {
 
 </body>
 </html>
-
