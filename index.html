@@ -1,3 +1,4 @@
+Khai, [15/1/2026 11:05 PM]
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,38 +26,6 @@
       margin: 0 auto 20px auto;
       width: 160px;
     }
-
-/* =======================
-   LOGO HEADER (DUA LOGO)
-======================= */
-.logo-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 30px;
-}
-
-.logo-bar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 50px;              /* jarak antara dua logo */
-  margin-bottom: 10px;
-}
-
-.logo-bar img {
-  height: 90px;           /* saiz logo */
-  object-fit: contain;
-}
-
-.logo-text {
-  text-align: center;
-  font-weight: 600;
-  font-size: 15px;
-  color: #333;
-}
-
-    
 
     /* MAIN WHITE DASHBOARD */
     .dashboard {
@@ -214,20 +183,9 @@
 
   <div class="dashboard">
 
-<div class="logo-header">
-  <div class="logo-bar">
-    <img src="logo_left.png" alt="Logo MRSM">
-    <img src="logo_right.png" alt="Logo Exco Akademik">
-  </div>
+    <img src="logo.png" class="logo-top" alt="MRSM Logo">
 
-  <div class="logo-text">
-    Exco Akademik<br>
-    MRSM Kuala Kubu Bharu
-  </div>
-</div>
-
-   
-   <div class="header">
+    <div class="header">
       <h2>GPA Calculator</h2>
       <h3>MRSM Kuala Kubu Bharu</h3>
       <p>(Lower Form)</p>
@@ -263,7 +221,8 @@
         <label>RBT (4)</label>
         <input type="number" id="rbt" min="0" max="100">
 
-        <label>Pendidikan Islam (5)</label>
+Khai, [15/1/2026 11:05 PM]
+<label>Pendidikan Islam (5)</label>
         <input type="number" id="pi" min="0" max="100">
 
         <label>PJK (3)</label>
@@ -308,7 +267,7 @@
     let inputs = document.querySelectorAll("input[type='number']");
 
     for (let i of inputs) {
-      if (i.value === "" || i.value < 0 || i.value > 100) {
+      if (i.value === ""  i.value < 0  i.value > 100) {
         alert("⚠️ Sila masukkan markah sah (0 hingga 100 sahaja).");
         i.focus();
         return;
@@ -332,7 +291,7 @@
       let g = getGred(Number(s[1]));
       total += g.p * s[2];
       kredit += s[2];
-      html += `<tr><td>${s[0]}</td><td>${s[1]}</td><td>${g.g}</td></tr>`;
+      html += <tr><td>${s[0]}</td><td>${s[1]}</td><td>${g.g}</td></tr>;
     }
 
     html += `</table>
