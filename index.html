@@ -150,7 +150,7 @@ function getGred(markah) {
 }
 
 function kiraPNG() {
-  let nama = nama.value;
+  let nama = document.getElementById("nama").value;
 
   let subs = [
     ["Bahasa Melayu", bm.value, 7],
@@ -190,8 +190,8 @@ function kiraPNG() {
     </tr>`;
   }
 
+  /* PNG WITH 3 DECIMAL PLACES */
   let png = (totalNilai / totalKredit).toFixed(3);
-
 
   html += `</table>
   <div id="png">PNG Keseluruhan: ${png}</div>`;
@@ -202,3 +202,4 @@ function kiraPNG() {
 
 </body>
 </html>
+
