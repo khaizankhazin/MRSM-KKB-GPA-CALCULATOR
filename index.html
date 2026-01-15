@@ -26,6 +26,38 @@
       width: 160px;
     }
 
+/* =======================
+   LOGO HEADER (DUA LOGO)
+======================= */
+.logo-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.logo-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;              /* jarak antara dua logo */
+  margin-bottom: 10px;
+}
+
+.logo-bar img {
+  height: 90px;           /* saiz logo */
+  object-fit: contain;
+}
+
+.logo-text {
+  text-align: center;
+  font-weight: 600;
+  font-size: 15px;
+  color: #333;
+}
+
+    
+
     /* MAIN WHITE DASHBOARD */
     .dashboard {
   width: 100%;
@@ -182,9 +214,20 @@
 
   <div class="dashboard">
 
-    <img src="logo.png" class="logo-top" alt="MRSM Logo">
+<div class="logo-header">
+  <div class="logo-bar">
+    <img src="logo_left.png" alt="Logo MRSM">
+    <img src="logo_right.png" alt="Logo Exco Akademik">
+  </div>
 
-    <div class="header">
+  <div class="logo-text">
+    Exco Akademik<br>
+    MRSM Kuala Kubu Bharu
+  </div>
+</div>
+
+   
+   <div class="header">
       <h2>GPA Calculator</h2>
       <h3>MRSM Kuala Kubu Bharu</h3>
       <p>(Lower Form)</p>
