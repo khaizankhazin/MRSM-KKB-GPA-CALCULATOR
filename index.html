@@ -11,19 +11,21 @@
       padding: 30px;
     }
 
+    /* LOGO TOP RIGHT */
+    .logo-top {
+      position: fixed;
+      top: 15px;
+      right: 20px;
+      width: 120px;
+    }
+
     .card {
       background: white;
       width: 50%;
-      margin: auto;
+      margin: 40px auto;
       padding: 25px;
       border-radius: 12px;
       box-shadow: 0 0 15px rgba(0,0,0,0.2);
-    }
-
-    img {
-      display: block;
-      margin: auto;
-      width: 130px;
     }
 
     h2, h3, p {
@@ -37,8 +39,9 @@
       font-weight: bold;
     }
 
+    /* INPUT 70% WIDTH */
     input {
-      width: 100%;
+      width: 70%;
       padding: 8px;
       margin-top: 5px;
     }
@@ -82,9 +85,10 @@
 
 <body>
 
-<div class="card">
+<!-- LOGO -->
+<img src="logo.png" class="logo-top" alt="MRSM KKB Logo">
 
-<img src="logo.png" alt="MRSM KKB Logo">
+<div class="card">
 
 <h2>Kalkulator PNG</h2>
 <h3>MRSM Kuala Kubu Bharu</h3>
@@ -130,7 +134,6 @@
 </div>
 
 <script>
-// MARKAH → GRED & CGPA
 function getGred(markah) {
   if (markah >= 85) return {g:"A+", p:4.00};
   if (markah >= 80) return {g:"A",  p:4.00};
@@ -147,7 +150,7 @@ function getGred(markah) {
 }
 
 function kiraPNG() {
-  let nama = document.getElementById("nama").value;
+  let nama = nama.value;
 
   let subs = [
     ["Bahasa Melayu", bm.value, 7],
