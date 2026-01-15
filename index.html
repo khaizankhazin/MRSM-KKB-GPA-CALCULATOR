@@ -15,28 +15,30 @@
     .logo-top {
       display: block;
       margin: 0 auto 15px auto;
-      width: 160px;
+      width: 170px;
     }
 
-    /* DASHBOARD CONTAINER */
+    /* DASHBOARD (WHITE BACKGROUND) */
     .dashboard {
-      max-width: 1200px;          /* BIG screen for PC */
+      max-width: 1600px; /* ✅ MUCH WIDER */
+      width: 98%;
       margin: auto;
       background: white;
-      border-radius: 14px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.25);
-      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 0 25px rgba(0,0,0,0.25);
+      padding: 40px;
     }
 
     /* HEADER */
     .header {
       text-align: center;
-      margin-bottom: 25px;
+      margin-bottom: 30px;
     }
 
     .header h2 {
       margin: 5px 0;
       font-weight: 700;
+      font-size: 28px;
     }
 
     .header h3 {
@@ -46,86 +48,90 @@
     }
 
     .header p {
-      font-size: 14px;
+      font-size: 15px;
       color: #555;
     }
 
     /* MAIN GRID */
     .content {
       display: grid;
-      grid-template-columns: 1fr 1fr; /* form | report */
-      gap: 30px;
+      grid-template-columns: 1.2fr 1.8fr; /* ✅ more space */
+      gap: 40px;
     }
 
     /* LEFT PANEL */
     .panel {
       background: #fafafa;
-      padding: 20px;
-      border-radius: 10px;
+      padding: 30px;
+      border-radius: 12px;
     }
 
     .panel h3 {
       text-align: center;
-      margin-bottom: 15px;
+      margin-bottom: 20px;
     }
 
     label {
       font-weight: bold;
-      margin-top: 10px;
+      margin-top: 14px;
       display: block;
     }
 
+    /* INPUTS — 50% WIDER & TALLER */
     input {
       width: 100%;
-      padding: 8px;
-      margin-top: 5px;
+      padding: 14px;        /* ✅ taller */
+      margin-top: 6px;
+      font-size: 16px;      /* ✅ easier typing */
+      border-radius: 6px;
+      border: 1px solid #ccc;
     }
 
     button {
       width: 100%;
-      margin-top: 15px;
-      padding: 12px;
+      margin-top: 20px;
+      padding: 14px;
       background: #004aad;
       color: white;
       border: none;
-      font-size: 16px;
-      border-radius: 6px;
+      font-size: 17px;
+      border-radius: 8px;
       cursor: pointer;
     }
 
     /* RIGHT PANEL (REPORT) */
     .report {
       background: #ffffff;
-      padding: 20px;
-      border-radius: 10px;
+      padding: 30px;
+      border-radius: 12px;
       border: 1px solid #ddd;
     }
 
     table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 10px;
-      font-size: 13px;
+      margin-top: 15px;
+      font-size: 15px;
     }
 
     th, td {
       border: 1px solid #ccc;
-      padding: 6px;
+      padding: 10px;
       text-align: center;
     }
 
     #png {
-      margin-top: 15px;
-      font-size: 18px;
+      margin-top: 20px;
+      font-size: 22px;
       font-weight: bold;
       text-align: center;
       color: #004aad;
     }
 
     /* 📱 MOBILE */
-    @media (max-width: 768px) {
+    @media (max-width: 900px) {
       .dashboard {
-        padding: 20px;
+        padding: 25px;
       }
 
       .content {
@@ -133,7 +139,7 @@
       }
 
       .logo-top {
-        width: 130px;
+        width: 140px;
       }
     }
 
@@ -169,7 +175,7 @@
 
   <div class="content">
 
-    <!-- LEFT : INPUT -->
+    <!-- INPUT PANEL -->
     <div class="panel">
       <h3>Maklumat Pelajar</h3>
 
@@ -191,7 +197,7 @@
       <button onclick="window.print()">Cetak Laporan</button>
     </div>
 
-    <!-- RIGHT : REPORT -->
+    <!-- REPORT PANEL -->
     <div class="report" id="output">
       <p style="text-align:center;color:#777;">
         Masukkan markah dan tekan <b>Kira PNG</b><br>
@@ -219,7 +225,6 @@ function getGred(m) {
 }
 
 function kiraPNG() {
-  let nama = nama.value;
   let subs = [
     ["BM", bm.value,7],["BI",bi.value,7],["Sej",sej.value,4],
     ["Geo",geo.value,3],["Math",math.value,9],["Sains",sains.value,8],
@@ -227,7 +232,8 @@ function kiraPNG() {
   ];
 
   let total=0, kredit=0;
-  let html=`<h3>Laporan Keputusan</h3><p>Nama: <b>${nama}</b></p>
+  let html=`<h3>Laporan Keputusan</h3>
+  <p>Nama: <b>${nama.value}</b></p>
   <table><tr><th>Subjek</th><th>Markah</th><th>Gred</th></tr>`;
 
   for (let s of subs) {
