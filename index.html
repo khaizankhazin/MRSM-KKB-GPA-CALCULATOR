@@ -7,27 +7,28 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #eef2f5;
-      padding: 20px;
+      background: #f4c430; /* iGold Yellow */
+      padding: 30px;
     }
 
     .card {
       background: white;
-      max-width: 580px;
+      width: 50%;
       margin: auto;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
     }
 
     img {
       display: block;
       margin: auto;
-      width: 120px;
+      width: 130px;
     }
 
-    h2, p {
+    h2, h3, p {
       text-align: center;
+      margin: 5px 0;
     }
 
     label {
@@ -50,15 +51,31 @@
       color: white;
       border: none;
       font-size: 16px;
-      border-radius: 5px;
+      border-radius: 6px;
       cursor: pointer;
     }
 
-    #result {
+    table {
+      width: 100%;
+      border-collapse: collapse;
       margin-top: 20px;
+      font-size: 14px;
+    }
+
+    table, th, td {
+      border: 1px solid #ccc;
+    }
+
+    th, td {
+      padding: 6px;
       text-align: center;
+    }
+
+    #png {
+      margin-top: 15px;
       font-size: 18px;
       font-weight: bold;
+      text-align: center;
     }
   </style>
 </head>
@@ -70,93 +87,112 @@
 <img src="logo.png" alt="MRSM KKB Logo">
 
 <h2>Kalkulator PNG</h2>
-<p>MRSM Kuala Kubu Bharu (Lower Form)</p>
+<h3>MRSM Kuala Kubu Bharu</h3>
+<p>(Kegunaan Dalaman / Muafakat)</p>
 
-<label>1. Bahasa Melayu (7 Kredit)</label>
-<input type="number" id="bm">
+<label>Nama Pelajar</label>
+<input type="text" id="nama">
 
-<label>2. Bahasa Inggeris (7 Kredit)</label>
-<input type="number" id="bi">
+<label>Bahasa Melayu (7 Kredit)</label>
+<input type="number" id="bm" min="0" max="100">
 
-<label>3. Sejarah (4 Kredit)</label>
-<input type="number" id="sej">
+<label>Bahasa Inggeris (7 Kredit)</label>
+<input type="number" id="bi" min="0" max="100">
 
-<label>4. Geografi (3 Kredit)</label>
-<input type="number" id="geo">
+<label>Sejarah (4 Kredit)</label>
+<input type="number" id="sej" min="0" max="100">
 
-<label>5. Matematik (9 Kredit)</label>
-<input type="number" id="math">
+<label>Geografi (3 Kredit)</label>
+<input type="number" id="geo" min="0" max="100">
 
-<label>6. Sains Teras (8 Kredit)</label>
-<input type="number" id="sains">
+<label>Matematik (9 Kredit)</label>
+<input type="number" id="math" min="0" max="100">
 
-<label>7. Reka Bentuk dan Teknologi (4 Kredit)</label>
-<input type="number" id="rbt">
+<label>Sains Teras (8 Kredit)</label>
+<input type="number" id="sains" min="0" max="100">
 
-<label>8. Pendidikan Islam (5 Kredit)</label>
-<input type="number" id="pi">
+<label>Reka Bentuk & Teknologi (4 Kredit)</label>
+<input type="number" id="rbt" min="0" max="100">
 
-<label>9. Pendidikan Jasmani & Kesihatan (3 Kredit)</label>
-<input type="number" id="pjk">
+<label>Pendidikan Islam (5 Kredit)</label>
+<input type="number" id="pi" min="0" max="100">
 
-<label>10. Pendidikan Seni Visual (2 Kredit)</label>
-<input type="number" id="psv">
+<label>Pendidikan Jasmani & Kesihatan (3 Kredit)</label>
+<input type="number" id="pjk" min="0" max="100">
+
+<label>Pendidikan Seni Visual (2 Kredit)</label>
+<input type="number" id="psv" min="0" max="100">
 
 <button onclick="kiraPNG()">Kira PNG</button>
 
-<div id="result"></div>
+<div id="output"></div>
 
 </div>
 
 <script>
-// MARKAH → CGPA (BASED ON TABLE)
-function markahKeCGPA(markah) {
-  if (markah >= 85) return 4.00;
-  if (markah >= 80) return 4.00;
-  if (markah >= 75) return 3.67;
-  if (markah >= 70) return 3.33;
-  if (markah >= 65) return 3.00;
-  if (markah >= 60) return 2.67;
-  if (markah >= 55) return 2.33;
-  if (markah >= 50) return 2.00;
-  if (markah >= 45) return 1.67;
-  if (markah >= 40) return 1.33;
-  if (markah >= 35) return 1.00;
-  return 0.00;
+// MARKAH → GRED & CGPA
+function getGred(markah) {
+  if (markah >= 85) return {g:"A+", p:4.00};
+  if (markah >= 80) return {g:"A",  p:4.00};
+  if (markah >= 75) return {g:"A-", p:3.67};
+  if (markah >= 70) return {g:"B+", p:3.33};
+  if (markah >= 65) return {g:"B",  p:3.00};
+  if (markah >= 60) return {g:"B-", p:2.67};
+  if (markah >= 55) return {g:"C+", p:2.33};
+  if (markah >= 50) return {g:"C",  p:2.00};
+  if (markah >= 45) return {g:"C-", p:1.67};
+  if (markah >= 40) return {g:"D",  p:1.33};
+  if (markah >= 35) return {g:"E",  p:1.00};
+  return {g:"F", p:0.00};
 }
 
 function kiraPNG() {
-  let subjects = [
-    {mark: bm.value, kredit: 7},
-    {mark: bi.value, kredit: 7},
-    {mark: sej.value, kredit: 4},
-    {mark: geo.value, kredit: 3},
-    {mark: math.value, kredit: 9},
-    {mark: sains.value, kredit: 8},
-    {mark: rbt.value, kredit: 4},
-    {mark: pi.value, kredit: 5},
-    {mark: pjk.value, kredit: 3},
-    {mark: psv.value, kredit: 2}
+  let nama = document.getElementById("nama").value;
+
+  let subs = [
+    ["Bahasa Melayu", bm.value, 7],
+    ["Bahasa Inggeris", bi.value, 7],
+    ["Sejarah", sej.value, 4],
+    ["Geografi", geo.value, 3],
+    ["Matematik", math.value, 9],
+    ["Sains Teras", sains.value, 8],
+    ["RBT", rbt.value, 4],
+    ["Pendidikan Islam", pi.value, 5],
+    ["PJK", pjk.value, 3],
+    ["PSV", psv.value, 2]
   ];
 
-  for (let s of subjects) {
-    if (s.mark === "") {
-      result.innerText = "Sila isi semua markah";
+  let totalNilai = 0, totalKredit = 0;
+
+  let html = `<h3>Rumusan Keputusan</h3>
+  <p>Nama Pelajar: <b>${nama}</b></p>
+  <table>
+  <tr><th>Subjek</th><th>Markah</th><th>Gred</th><th>Kredit</th></tr>`;
+
+  for (let s of subs) {
+    if (s[1] === "") {
+      output.innerHTML = "Sila isi semua maklumat";
       return;
     }
+
+    let g = getGred(Number(s[1]));
+    totalNilai += g.p * s[2];
+    totalKredit += s[2];
+
+    html += `<tr>
+      <td>${s[0]}</td>
+      <td>${s[1]}</td>
+      <td>${g.g}</td>
+      <td>${s[2]}</td>
+    </tr>`;
   }
-
-  let totalNilai = 0;
-  let totalKredit = 0;
-
-  subjects.forEach(s => {
-    totalNilai += markahKeCGPA(Number(s.mark)) * s.kredit;
-    totalKredit += s.kredit;
-  });
 
   let png = (totalNilai / totalKredit).toFixed(2);
 
-  result.innerText = "PNG Anda: " + png;
+  html += `</table>
+  <div id="png">PNG Keseluruhan: ${png}</div>`;
+
+  output.innerHTML = html;
 }
 </script>
 
