@@ -7,19 +7,33 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      max-width: 500px;
-      margin: auto;
+      background: #eef2f5;
       padding: 20px;
-      background: #f5f5f5;
     }
 
-    h2 {
+    .card {
+      background: white;
+      max-width: 580px;
+      margin: auto;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    img {
+      display: block;
+      margin: auto;
+      width: 120px;
+    }
+
+    h2, p {
       text-align: center;
     }
 
     label {
       margin-top: 10px;
       display: block;
+      font-weight: bold;
     }
 
     input {
@@ -29,55 +43,120 @@
     }
 
     button {
-      margin-top: 15px;
-      padding: 10px;
       width: 100%;
-      background: #007bff;
+      margin-top: 20px;
+      padding: 12px;
+      background: #004aad;
       color: white;
       border: none;
       font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
     }
 
     #result {
       margin-top: 20px;
-      font-weight: bold;
       text-align: center;
+      font-size: 18px;
+      font-weight: bold;
     }
   </style>
 </head>
 
 <body>
 
-<h2>Kalkulator PNG<br>MRSM Kuala Kubu Bharu</h2>
+<div class="card">
 
-<label>Bahasa Melayu</label>
+<img src="logo.png" alt="MRSM KKB Logo">
+
+<h2>Kalkulator PNG</h2>
+<p>MRSM Kuala Kubu Bharu (Lower Form)</p>
+
+<label>1. Bahasa Melayu (7 Kredit)</label>
 <input type="number" id="bm">
 
-<label>English</label>
-<input type="number" id="eng">
+<label>2. Bahasa Inggeris (7 Kredit)</label>
+<input type="number" id="bi">
 
-<label>Matematik</label>
+<label>3. Sejarah (4 Kredit)</label>
+<input type="number" id="sej">
+
+<label>4. Geografi (3 Kredit)</label>
+<input type="number" id="geo">
+
+<label>5. Matematik (9 Kredit)</label>
 <input type="number" id="math">
+
+<label>6. Sains Teras (8 Kredit)</label>
+<input type="number" id="sains">
+
+<label>7. Reka Bentuk dan Teknologi (4 Kredit)</label>
+<input type="number" id="rbt">
+
+<label>8. Pendidikan Islam (5 Kredit)</label>
+<input type="number" id="pi">
+
+<label>9. Pendidikan Jasmani & Kesihatan (3 Kredit)</label>
+<input type="number" id="pjk">
+
+<label>10. Pendidikan Seni Visual (2 Kredit)</label>
+<input type="number" id="psv">
 
 <button onclick="kiraPNG()">Kira PNG</button>
 
 <div id="result"></div>
 
-<script>
-function kiraPNG() {
-  let bm = Number(document.getElementById("bm").value);
-  let eng = Number(document.getElementById("eng").value);
-  let math = Number(document.getElementById("math").value);
+</div>
 
-  if (!bm || !eng || !math) {
-    document.getElementById("result").innerText = "Sila isi semua markah";
-    return;
+<script>
+// MARKAH → CGPA (BASED ON TABLE)
+function markahKeCGPA(markah) {
+  if (markah >= 85) return 4.00;
+  if (markah >= 80) return 4.00;
+  if (markah >= 75) return 3.67;
+  if (markah >= 70) return 3.33;
+  if (markah >= 65) return 3.00;
+  if (markah >= 60) return 2.67;
+  if (markah >= 55) return 2.33;
+  if (markah >= 50) return 2.00;
+  if (markah >= 45) return 1.67;
+  if (markah >= 40) return 1.33;
+  if (markah >= 35) return 1.00;
+  return 0.00;
+}
+
+function kiraPNG() {
+  let subjects = [
+    {mark: bm.value, kredit: 7},
+    {mark: bi.value, kredit: 7},
+    {mark: sej.value, kredit: 4},
+    {mark: geo.value, kredit: 3},
+    {mark: math.value, kredit: 9},
+    {mark: sains.value, kredit: 8},
+    {mark: rbt.value, kredit: 4},
+    {mark: pi.value, kredit: 5},
+    {mark: pjk.value, kredit: 3},
+    {mark: psv.value, kredit: 2}
+  ];
+
+  for (let s of subjects) {
+    if (s.mark === "") {
+      result.innerText = "Sila isi semua markah";
+      return;
+    }
   }
 
-  let purata = ((bm + eng + math) / 3).toFixed(2);
+  let totalNilai = 0;
+  let totalKredit = 0;
 
-  document.getElementById("result").innerText =
-    "PNG Anggaran Anda: " + purata;
+  subjects.forEach(s => {
+    totalNilai += markahKeCGPA(Number(s.mark)) * s.kredit;
+    totalKredit += s.kredit;
+  });
+
+  let png = (totalNilai / totalKredit).toFixed(2);
+
+  result.innerText = "PNG Anda: " + png;
 }
 </script>
 
