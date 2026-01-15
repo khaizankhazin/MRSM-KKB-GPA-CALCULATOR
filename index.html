@@ -7,51 +7,72 @@
   <style>
     body {
       font-family: "Segoe UI", Arial, sans-serif;
-      background: #f4c430; /* iGold Yellow */
-      padding: 30px;
+      background: #f4c430;
+      padding: 20px;
     }
 
-    /* LOGO TOP CENTER */
+    /* LOGO */
     .logo-top {
       display: block;
-      margin: 0 auto 20px auto;
-      width: 144px; /* 20% bigger */
+      margin: 0 auto 15px auto;
+      width: 160px;
     }
 
-    .card {
+    /* DASHBOARD CONTAINER */
+    .dashboard {
+      max-width: 1200px;          /* BIG screen for PC */
+      margin: auto;
       background: white;
-      max-width: 754px; /* 30% bigger */
-      margin: 40px auto;
+      border-radius: 14px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.25);
       padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.2);
     }
 
-    h2 {
+    /* HEADER */
+    .header {
       text-align: center;
-      font-weight: 700;
-      letter-spacing: 0.5px;
+      margin-bottom: 25px;
+    }
+
+    .header h2 {
       margin: 5px 0;
+      font-weight: 700;
     }
 
-    h3 {
-      text-align: center;
+    .header h3 {
+      margin: 5px 0;
       font-weight: 600;
       color: #444;
-      margin: 5px 0;
     }
 
-    p {
-      text-align: center;
+    .header p {
       font-size: 14px;
       color: #555;
-      margin: 5px 0;
+    }
+
+    /* MAIN GRID */
+    .content {
+      display: grid;
+      grid-template-columns: 1fr 1fr; /* form | report */
+      gap: 30px;
+    }
+
+    /* LEFT PANEL */
+    .panel {
+      background: #fafafa;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    .panel h3 {
+      text-align: center;
+      margin-bottom: 15px;
     }
 
     label {
+      font-weight: bold;
       margin-top: 10px;
       display: block;
-      font-weight: bold;
     }
 
     input {
@@ -72,72 +93,63 @@
       cursor: pointer;
     }
 
+    /* RIGHT PANEL (REPORT) */
+    .report {
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+    }
+
     table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 20px;
+      margin-top: 10px;
       font-size: 13px;
     }
 
-    table, th, td {
-      border: 1px solid #ccc;
-    }
-
     th, td {
+      border: 1px solid #ccc;
       padding: 6px;
       text-align: center;
     }
 
     #png {
       margin-top: 15px;
-      font-size: 16px;
+      font-size: 18px;
       font-weight: bold;
       text-align: center;
+      color: #004aad;
     }
 
-    /* 📱 MOBILE RESPONSIVE */
+    /* 📱 MOBILE */
     @media (max-width: 768px) {
-      .card {
-        max-width: 95%;
+      .dashboard {
         padding: 20px;
       }
 
+      .content {
+        grid-template-columns: 1fr;
+      }
+
       .logo-top {
-        width: 120px;
-      }
-
-      h2 {
-        font-size: 20px;
-      }
-
-      h3 {
-        font-size: 16px;
-      }
-
-      input, button {
-        font-size: 14px;
+        width: 130px;
       }
     }
 
-    /* 🖨 PRINT FRIENDLY */
+    /* 🖨 PRINT */
     @media print {
       body {
         background: white;
-        padding: 0;
-      }
-
-      .card {
-        box-shadow: none;
-        max-width: 100%;
-        margin: 0;
       }
 
       button {
         display: none;
       }
 
-      .logo-top {
-        width: 120px;
+      .dashboard {
+        box-shadow: none;
+        border: none;
       }
     }
   </style>
@@ -147,115 +159,85 @@
 
 <img src="logo.png" class="logo-top" alt="MRSM KKB Logo">
 
-<div class="card">
+<div class="dashboard">
 
-  <h2>GPA Calculator</h2>
-  <h3>MRSM Kuala Kubu Bharu</h3>
-  <p>(Lower Form)</p>
+  <div class="header">
+    <h2>GPA Calculator</h2>
+    <h3>MRSM Kuala Kubu Bharu</h3>
+    <p>(Lower Form)</p>
+  </div>
 
-  <label>Nama Pelajar</label>
-  <input type="text" id="nama">
+  <div class="content">
 
-  <label>Bahasa Melayu (7 Kredit)</label>
-  <input type="number" id="bm" min="0" max="100">
+    <!-- LEFT : INPUT -->
+    <div class="panel">
+      <h3>Maklumat Pelajar</h3>
 
-  <label>Bahasa Inggeris (7 Kredit)</label>
-  <input type="number" id="bi" min="0" max="100">
+      <label>Nama Pelajar</label>
+      <input type="text" id="nama">
 
-  <label>Sejarah (4 Kredit)</label>
-  <input type="number" id="sej" min="0" max="100">
+      <label>Bahasa Melayu (7)</label><input type="number" id="bm">
+      <label>Bahasa Inggeris (7)</label><input type="number" id="bi">
+      <label>Sejarah (4)</label><input type="number" id="sej">
+      <label>Geografi (3)</label><input type="number" id="geo">
+      <label>Matematik (9)</label><input type="number" id="math">
+      <label>Sains Teras (8)</label><input type="number" id="sains">
+      <label>RBT (4)</label><input type="number" id="rbt">
+      <label>Pendidikan Islam (5)</label><input type="number" id="pi">
+      <label>PJK (3)</label><input type="number" id="pjk">
+      <label>PSV (2)</label><input type="number" id="psv">
 
-  <label>Geografi (3 Kredit)</label>
-  <input type="number" id="geo" min="0" max="100">
+      <button onclick="kiraPNG()">Kira PNG</button>
+      <button onclick="window.print()">Cetak Laporan</button>
+    </div>
 
-  <label>Matematik (9 Kredit)</label>
-  <input type="number" id="math" min="0" max="100">
+    <!-- RIGHT : REPORT -->
+    <div class="report" id="output">
+      <p style="text-align:center;color:#777;">
+        Masukkan markah dan tekan <b>Kira PNG</b><br>
+        untuk paparan laporan.
+      </p>
+    </div>
 
-  <label>Sains Teras (8 Kredit)</label>
-  <input type="number" id="sains" min="0" max="100">
-
-  <label>Reka Bentuk & Teknologi (4 Kredit)</label>
-  <input type="number" id="rbt" min="0" max="100">
-
-  <label>Pendidikan Islam (5 Kredit)</label>
-  <input type="number" id="pi" min="0" max="100">
-
-  <label>Pendidikan Jasmani & Kesihatan (3 Kredit)</label>
-  <input type="number" id="pjk" min="0" max="100">
-
-  <label>Pendidikan Seni Visual (2 Kredit)</label>
-  <input type="number" id="psv" min="0" max="100">
-
-  <button onclick="kiraPNG()">Kira PNG</button>
-  <button onclick="window.print()">Cetak Keputusan</button>
-
-  <div id="output"></div>
-
+  </div>
 </div>
 
 <script>
-function getGred(markah) {
-  if (markah >= 85) return {g:"A+", p:4.00};
-  if (markah >= 80) return {g:"A",  p:4.00};
-  if (markah >= 75) return {g:"A-", p:3.67};
-  if (markah >= 70) return {g:"B+", p:3.33};
-  if (markah >= 65) return {g:"B",  p:3.00};
-  if (markah >= 60) return {g:"B-", p:2.67};
-  if (markah >= 55) return {g:"C+", p:2.33};
-  if (markah >= 50) return {g:"C",  p:2.00};
-  if (markah >= 45) return {g:"C-", p:1.67};
-  if (markah >= 40) return {g:"D",  p:1.33};
-  if (markah >= 35) return {g:"E",  p:1.00};
-  return {g:"F", p:0.00};
+function getGred(m) {
+  if (m >= 85) return {g:"A+", p:4};
+  if (m >= 80) return {g:"A", p:4};
+  if (m >= 75) return {g:"A-", p:3.67};
+  if (m >= 70) return {g:"B+", p:3.33};
+  if (m >= 65) return {g:"B", p:3};
+  if (m >= 60) return {g:"B-", p:2.67};
+  if (m >= 55) return {g:"C+", p:2.33};
+  if (m >= 50) return {g:"C", p:2};
+  if (m >= 45) return {g:"C-", p:1.67};
+  if (m >= 40) return {g:"D", p:1.33};
+  if (m >= 35) return {g:"E", p:1};
+  return {g:"F", p:0};
 }
 
 function kiraPNG() {
-  let nama = document.getElementById("nama").value;
-
+  let nama = nama.value;
   let subs = [
-    ["Bahasa Melayu", bm.value, 7],
-    ["Bahasa Inggeris", bi.value, 7],
-    ["Sejarah", sej.value, 4],
-    ["Geografi", geo.value, 3],
-    ["Matematik", math.value, 9],
-    ["Sains Teras", sains.value, 8],
-    ["RBT", rbt.value, 4],
-    ["Pendidikan Islam", pi.value, 5],
-    ["PJK", pjk.value, 3],
-    ["PSV", psv.value, 2]
+    ["BM", bm.value,7],["BI",bi.value,7],["Sej",sej.value,4],
+    ["Geo",geo.value,3],["Math",math.value,9],["Sains",sains.value,8],
+    ["RBT",rbt.value,4],["PI",pi.value,5],["PJK",pjk.value,3],["PSV",psv.value,2]
   ];
 
-  let totalNilai = 0, totalKredit = 0;
-
-  let html = `<h3>Rumusan Keputusan</h3>
-  <p>Nama Pelajar: <b>${nama}</b></p>
-  <table>
-  <tr><th>Subjek</th><th>Markah</th><th>Gred</th><th>Kredit</th></tr>`;
+  let total=0, kredit=0;
+  let html=`<h3>Laporan Keputusan</h3><p>Nama: <b>${nama}</b></p>
+  <table><tr><th>Subjek</th><th>Markah</th><th>Gred</th></tr>`;
 
   for (let s of subs) {
-    if (s[1] === "") {
-      output.innerHTML = "Sila isi semua maklumat";
-      return;
-    }
-
-    let g = getGred(Number(s[1]));
-    totalNilai += g.p * s[2];
-    totalKredit += s[2];
-
-    html += `<tr>
-      <td>${s[0]}</td>
-      <td>${s[1]}</td>
-      <td>${g.g}</td>
-      <td>${s[2]}</td>
-    </tr>`;
+    let g=getGred(Number(s[1]));
+    total+=g.p*s[2]; kredit+=s[2];
+    html+=`<tr><td>${s[0]}</td><td>${s[1]}</td><td>${g.g}</td></tr>`;
   }
 
-  let png = (totalNilai / totalKredit).toFixed(3);
-
-  html += `</table>
-  <div id="png">PNG Keseluruhan: ${png}</div>`;
-
-  output.innerHTML = html;
+  html+=`</table><div id="png">PNG: ${(total/kredit).toFixed(3)}</div>`;
+  output.innerHTML=html;
 }
 </script>
 
