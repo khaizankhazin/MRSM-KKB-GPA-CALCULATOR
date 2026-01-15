@@ -28,13 +28,15 @@
 
     /* MAIN WHITE DASHBOARD */
     .dashboard {
-      width: 100%;
-      max-width: 1900px;
-      background: white;
-      border-radius: 16px;
-      box-shadow: 0 0 30px rgba(0,0,0,0.25);
-      padding: 40px;
-    }
+  width: 100%;
+  max-width: 2400px;   /* 🔥 MUCH WIDER */
+  margin: 0 auto;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 0 30px rgba(0,0,0,0.25);
+  padding: 50px 60px;  /* more breathing space */
+}
+
 
     /* HEADER */
     .header {
@@ -60,19 +62,21 @@
     }
 
     /* CONTENT GRID */
-    .content {
-      display: grid;
-      grid-template-columns: 1.6fr 1.4fr;
-      gap: 40px;
-      align-items: start;
-    }
+   .content {
+  display: grid;
+  grid-template-columns: 2fr 1fr;  /* 🔥 input side dominates */
+  gap: 50px;
+  align-items: start;
+}
+
 
     /* INPUT PANEL */
     .panel {
-      background: #fafafa;
-      padding: 30px;
-      border-radius: 12px;
-    }
+  background: #fafafa;
+  padding: 25px 35px; /* 🔥 horizontal emphasis */
+  border-radius: 12px;
+}
+
 
     .panel h3 {
       text-align: center;
@@ -86,14 +90,15 @@
     }
 
     input {
-      width: 100%;
-      padding: 16px;
-      margin-top: 6px;
-      font-size: 18px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      box-sizing: border-box;
-    }
+   width: 100%;
+  padding: 18px;
+  margin-top: 8px;
+  font-size: 19px;
+  border-radius: 8px;
+  border: 1px solid #bbb;
+  box-sizing: border-box;
+}
+
 
     input:invalid {
       border-color: red;
